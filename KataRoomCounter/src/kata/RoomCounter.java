@@ -7,6 +7,7 @@ public class RoomCounter {
 	private int _line;
 	private int _column;
 	private int _roomCounter;
+	private int _color = 1;
 	
 	private int[][] _copyPlan;
 	
@@ -30,7 +31,7 @@ public class RoomCounter {
 		}
 		return _roomCounter;
 	}
-
+	// Recursif
 	private boolean followPath(int x, int y) {
 		if(_copyPlan[x][y] != 0)
 		{
@@ -45,6 +46,37 @@ public class RoomCounter {
         return true;
 	}
 	
+	public int countThirdVersion()
+	{
+		_roomCounter = 0;
+		boolean _isColorChanged = false;
+		for (int line = 0; line < _line; line++) {
+			for (int column = 0; column < _column; column++) {
+                    if(_copyPlan[line][column] == 0) {
+                        if(_copyPlan[line - 1][column] == 1) {
+                            _isColorChanged = true;
+                            _roomCounter++;
+                            _copyPlan[line][column] = ++_color;
+                        }
+                        else {
+                            _copyPlan[line][column] = _copyPlan[line-1][column];
+                        }
+                    }
+                    if( _copyPlan[line][column] != 1 && _copyPlan[line][column+1] != 1) {
+                        _copyPlan[line][column+1] = _copyPlan[line][column];
+                       
+                        if(_copyPlan[line-1][column+1] != 1 && _copyPlan[line-1][column+1] != _copyPlan[line][column+1] && _isColorChanged) {
+                            _isColorChanged = false;
+                            _roomCounter--;
+                        }
+                    }
+			}
+		}
+		return _roomCounter;
+	}
+	
+	
+	//Iteratif with Stack
 	public int newCount() {
 		_roomCounter = 0;
 		

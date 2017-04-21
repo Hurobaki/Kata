@@ -12,8 +12,8 @@ public class RoomCounterTest {
 	@Before
 	public void setUp()
 	{
-		_roomCounter = new RoomCounter[5];
-		_plan = new Plan[5];
+		_roomCounter = new RoomCounter[6];
+		_plan = new Plan[6];
 		
 		_plan[0] = new Plan(5,5, new int[][]{
 				{1,1,1,1,1},
@@ -55,11 +55,21 @@ public class RoomCounterTest {
 				{1,1,1,1,1}
 		});
 		
+		_plan[5] = new Plan(5,5, new int[][]{
+				{1,1,1,1,1},
+				{1,0,0,0,1},
+				{1,0,0,0,1},
+				{1,0,0,0,1},
+				{1,1,1,1,1}	
+		});
+		
 		_roomCounter[0] = new RoomCounter(_plan[0]);
 		_roomCounter[1] = new RoomCounter(_plan[1]);
 		_roomCounter[2] = new RoomCounter(_plan[2]);
 		_roomCounter[3] = new RoomCounter(_plan[3]);
 		_roomCounter[4] = new RoomCounter(_plan[4]);
+		_roomCounter[5] = new RoomCounter(_plan[5]);
+		
 		
 	}
 
@@ -108,4 +118,42 @@ public class RoomCounterTest {
 	{
 		Assert.assertEquals(3, _roomCounter[4].newCount());
 	}
+	
+	@Test
+	public void should_return_0_for_count_third_version_plan_0()
+	{
+		Assert.assertEquals(0, _roomCounter[0].countThirdVersion());
+	}
+	
+	@Test
+	public void should_return_1_for_count_third_version_plan_1()
+	{
+		Assert.assertEquals(1, _roomCounter[1].countThirdVersion());
+	}
+	
+	@Test
+	public void should_return_2_for_count_third_version_plan_2()
+	{
+		Assert.assertEquals(2, _roomCounter[2].countThirdVersion());
+	}
+	
+	@Test
+	public void should_return_1_for_count_third_version_plan_3()
+	{
+		Assert.assertEquals(1, _roomCounter[3].countThirdVersion());
+	}
+	
+	@Test
+	public void should_return_3_for_count_third_version_plan_4()
+	{
+		Assert.assertEquals(3, _roomCounter[4].countThirdVersion());
+	}
+	
+	@Test
+	public void should_return_1_for_count_third_version_plan_5()
+	{
+		Assert.assertEquals(1, _roomCounter[5].countThirdVersion());
+	}
+	
+	
 }

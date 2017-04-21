@@ -101,6 +101,8 @@ public class DisplayRoom {
 		_roomCounter[6] = new RoomCounter(_plan[6]);
 		
 		count();
+		//newCount();
+		//countThirdVersion();
 	}
 	
 	private void count(){
@@ -121,6 +123,48 @@ public class DisplayRoom {
             System.out.println("");
            
             System.out.println("Room count : " + _roomCounter[roomCurrent].count() + " \n");
+        }
+    }
+	
+	private void newCount(){
+        for(int roomCurrent = 0; roomCurrent < _roomCounter.length; roomCurrent++){
+            _roomCounter[0] = new RoomCounter(_plan[0]);
+            int lineNumber = _plan[roomCurrent].getLine();
+            int columnNumber = _plan[roomCurrent].getColumn();
+            int[][] map = _plan[roomCurrent].getMap();
+           
+            for (int line = 0; line < lineNumber; line++) {
+                for (int column = 0; column < columnNumber; column++) {
+                    System.out.print(map[line][column] + " ");
+                }
+               
+                System.out.println("");
+            }
+           
+            System.out.println("");
+           
+            System.out.println("Room count : " + _roomCounter[roomCurrent].newCount() + " \n");
+        }
+    }
+	
+	private void countThirdVersion(){
+        for(int roomCurrent = 0; roomCurrent < _roomCounter.length; roomCurrent++){
+            _roomCounter[0] = new RoomCounter(_plan[0]);
+            int lineNumber = _plan[roomCurrent].getLine();
+            int columnNumber = _plan[roomCurrent].getColumn();
+            int[][] map = _plan[roomCurrent].getMap();
+           
+            for (int line = 0; line < lineNumber; line++) {
+                for (int column = 0; column < columnNumber; column++) {
+                    System.out.print(map[line][column] + " ");
+                }
+               
+                System.out.println("");
+            }
+           
+            System.out.println("");
+           
+            System.out.println("Room count : " + _roomCounter[roomCurrent].countThirdVersion() + " \n");
         }
     }
 	
