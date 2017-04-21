@@ -52,20 +52,25 @@ public class RoomCounter {
 		boolean _isColorChanged = false;
 		for (int line = 0; line < _line; line++) {
 			for (int column = 0; column < _column; column++) {
-                    if(_copyPlan[line][column] == 0) {
-                        if(_copyPlan[line - 1][column] == 1) {
+				int currentPoint = _copyPlan[line][column];
+				
+                    if(currentPoint == 0) {
+                    	int pointAbove = _copyPlan[line - 1][column];
+                    	
+                        if(pointAbove == 1) {
                             _isColorChanged = true;
                             _roomCounter++;
-                            _copyPlan[line][column] = ++_color;
+                            _copyPlan[line][column] = currentPoint = ++_color;
                         }
                         else {
-                            _copyPlan[line][column] = _copyPlan[line-1][column];
+                            _copyPlan[line][column] = currentPoint = pointAbove;
                         }
                     }
-                    if( _copyPlan[line][column] != 1 && _copyPlan[line][column+1] != 1) {
-                        _copyPlan[line][column+1] = _copyPlan[line][column];
-                       
-                        if(_copyPlan[line-1][column+1] != 1 && _copyPlan[line-1][column+1] != _copyPlan[line][column+1] && _isColorChanged) {
+                    
+                    if(currentPoint != 1 && _copyPlan[line][column+1] != 1) {
+                        _copyPlan[line][column+1] = currentPoint;
+                       int rightAbove = _copyPlan[line-1][column+1];
+                        if(rightAbove != 1 && rightAbove != _copyPlan[line][column+1] && _isColorChanged) {
                             _isColorChanged = false;
                             _roomCounter--;
                         }
