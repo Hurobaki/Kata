@@ -14,14 +14,24 @@ public class RPNCalculator {
 		_stack = new Stack<Double>();
 	}
 	
+	public Stack<Double> getStack()
+	{
+		return _stack;
+	}
+	
 	public void push(Double numberToPush)
 	{
 		_stack.push(numberToPush);
 	}
 	
-	public void pop()
-	{
+	public Double pop() throws EmptyStackException
+	{	
+		if(_stack.isEmpty())
+		{
+			throw new EmptyStackException();
+		}
 		
+		return _stack.pop();
 	}
 	
 	public void clear()
@@ -73,12 +83,17 @@ public class RPNCalculator {
 		}	
 	}
 	
-	public void divide()
+	public void divide() throws IllegalArgumentException
 	{
 		try
 		{
 			operand1 = _stack.pop();
 			operand2 = _stack.pop();
+			
+			if(operand1 == Double.valueOf(0))
+			{
+				throw new IllegalArgumentException();
+			}
 			
 			push(operand2 / operand1);
 		}catch(EmptyStackException e)
