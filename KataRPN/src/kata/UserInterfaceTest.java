@@ -1,6 +1,8 @@
 package kata;
 
 
+import java.util.EmptyStackException;
+
 import org.junit.*;
 
 public class UserInterfaceTest {
@@ -73,6 +75,12 @@ public class UserInterfaceTest {
 	public void should_return_negativ_18()
 	{
 		Assert.assertEquals(String.valueOf(Double.valueOf(-18)), _userInterface.userInput("-2 3 11 + 5 - *"));
+	}
+	
+	@Test(expected = EmptyStackException.class)
+	public void should_raise_exception_for_empty_user_input()
+	{
+		_userInterface.userInput("");
 	}
 
 }

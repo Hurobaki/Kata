@@ -2,6 +2,7 @@ package kata;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -29,20 +30,28 @@ public class UserInterface {
 				userRequest = _scanner.nextLine();
 				
 				switch (userRequest.toLowerCase()) {
-				case "quit":
-					_scanner.close();
-					_printStream.println(printMessage(userRequest));
-					break;
-				case "help":
-					_printStream.println(printMessage(userRequest));
-					break;
-				case "clear":
-					_printStream.println(printMessage(userRequest));
-					break;
-				default:
-					_printStream.println(userInput(userRequest));
-					break;
-				}
+					case "quit":
+						_printStream.println(printMessage(userRequest));
+						userRequest = "quit";
+						_scanner.close();
+						break;
+					case "help":
+						_printStream.println(printMessage(userRequest));
+						break;
+					case "clear":
+						_printStream.println(printMessage(userRequest));
+						break;
+					default:
+						try
+						{
+							_printStream.println(userInput(userRequest));
+						}catch(IllegalArgumentException | EmptyStackException e)
+						{
+							_printStream.println("Wrong String Format");
+						}
+						
+						break;
+					}
 				
 			}
 			while(userRequest.toLowerCase() != "quit");
@@ -99,7 +108,7 @@ public class UserInterface {
 							_rpnCalculator.multiply();
 							break;
 						default:
-							_rpnCalculator.push(Double.valueOf(input));
+							_rpnCalculator.push(Double.parseDouble(input));
 							break;
 						}
 					input = "";
