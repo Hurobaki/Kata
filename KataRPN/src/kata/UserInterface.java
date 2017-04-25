@@ -11,6 +11,7 @@ public class UserInterface {
 	private Scanner _scanner;
 	private InputStream _inputStream;
 	private PrintStream _printStream;
+	private boolean _running = true;
 
 		public UserInterface(InputStream input, PrintStream output)
 		{
@@ -22,100 +23,112 @@ public class UserInterface {
 		public void run()
 		{
 			_scanner = new Scanner(_inputStream);
-			String userRequest = "";
-		
+			
 			do
 			{
 				_printStream.println("RPN Calculator >");
-				userRequest = _scanner.nextLine();
+				String userRequest = _scanner.nextLine();
 				
-				switch (userRequest.toLowerCase()) {
-					case "quit":
-						_printStream.println(printMessage(userRequest));
-						userRequest = "quit";
-						_scanner.close();
-						break;
-					case "help":
-						_printStream.println(printMessage(userRequest));
-						break;
-					case "clear":
-						_printStream.println(printMessage(userRequest));
-						break;
-					default:
-						try
-						{
-							_printStream.println(userInput(userRequest));
-						}catch(IllegalArgumentException | EmptyStackException e)
-						{
-							_printStream.println("Wrong String Format");
+				try
+				{
+					parse(userRequest);
+				}
+				catch(IllegalArgumentException | EmptyStackException e)
+				{
+					_printStream.println("*** Syntax error ***");
+				}
+				
+			}
+			while(_running);
+		}
+		
+
+		public void parse(String userRequest)
+		{
+			int userInputLength = userRequest.length();
+			char currentChar = ' ';
+			
+			for(int currentCaracter = 0; currentCaracter < userInputLength; currentCaracter++)
+			{
+				String token = "";
+				currentChar = userRequest.charAt(currentCaracter);
+
+				if(currentChar != 0) {
+					while(currentChar == ' ' && currentChar == '\n') {
+						currentCaracter++;
+						if(currentCaracter < userInputLength) {
+							currentChar = userRequest.charAt(currentCaracter);
 						}
-						
-						break;
+						else {
+							currentChar = 0;
+							break;
+						}
+					}					
+				}
+
+				if(currentChar != 0) {
+					while(currentChar != ' ' && currentChar != '\n') {
+						token += currentChar;
+						currentCaracter++;
+						if(currentCaracter < userInputLength) {
+							currentChar = userRequest.charAt(currentCaracter);
+						}
+						else {
+							currentChar = 0;
+							break;
+						}
 					}
-				
-			}
-			while(userRequest.toLowerCase() != "quit");
-		}
-		
-		public String printMessage(String message)
-		{
-			if(message.toLowerCase().equals("help"))
-			{
-				return "You asked for online documentation";
-			}
-			
-			if(message.toLowerCase().equals("quit"))
-			{
-				return "Bye !";
-			}
-			
-			if(message.toLowerCase().equals("clear"))
-			{
-				_rpnCalculator.clear();
-				return "Cleared !";
-			}
-			
-			return "";
-		}
-		
-		public String userInput(String userRequest)
-		{
-			String input = "";
-			int userInput = userRequest.length();
-			
-			for(int currentCaracter = 0; currentCaracter < userInput; currentCaracter++)
-			{
-				char currentChar = userRequest.charAt(currentCaracter);
-				
-				if(currentChar != '\n' && currentChar != ' ')
-				{
-					input += currentChar;
 				}
-				
-				if(currentChar == ' ' || currentCaracter == userInput - 1)
-				{
-					switch (input) {
-						case "+":
-							_rpnCalculator.add();
-							break;
-						case "-":
-							_rpnCalculator.substract();
-							break;
-						case "/":
-							_rpnCalculator.divide();
-							break;
-						case "*":
-							_rpnCalculator.multiply();
-							break;
-						default:
-							_rpnCalculator.push(Double.parseDouble(input));
-							break;
-						}
-					input = "";
+
+				if(token.isEmpty() == false) {
+					eval(token);
 				}
-				
+
+				if(_running == false) {
+					break;
+				}
 			}
-					
-			return String.valueOf(_rpnCalculator.pop());
+			if(_rpnCalculator.empty() == false) {
+				_printStream.println(String.valueOf(_rpnCalculator.pop()));						
+			}
+		}
+
+		private void eval(String token) {
+			switch (token) {
+				case "+":
+					_rpnCalculator.add();
+					break;
+				case "-":
+					_rpnCalculator.substract();
+					break;
+				case "/":
+					_rpnCalculator.divide();
+					break;
+				case "*":
+					_rpnCalculator.multiply();
+					break;
+				case "clear":
+					_rpnCalculator.clear();
+					break;
+				case "help":
+					help();
+					break;
+				case "quit":
+					quit();
+					break;
+				default:
+					_rpnCalculator.push(Double.parseDouble(token));
+					break;
+				}
+		}
+
+		private void quit() {
+			_printStream.println("Bye !");
+			_running = false;
+			_scanner.close();
+		}
+
+		private void help() {
+			_printStream.println("Help !");
 		}	
 }

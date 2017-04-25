@@ -1,7 +1,9 @@
 package kata;
 
 
-import java.util.EmptyStackException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import org.junit.*;
 
@@ -9,12 +11,15 @@ public class UserInterfaceTest {
 
 	private UserInterface _userInterface;
 	private RPNCalculator _rpnCalculator;
+	private ByteArrayOutputStream _outContent;
 	
 	@Before
 	public void setUp()
 	{
-		_userInterface = new UserInterface(System.in, System.out);
 		_rpnCalculator = new RPNCalculator();
+		_outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(_outContent));
+		_userInterface = new UserInterface(System.in, System.out);
 	}
 	
 	@Test
@@ -36,51 +41,45 @@ public class UserInterfaceTest {
 	}
 	
 	@Test
-	public void should_display_help_documentation_when_typing_help()
-	{
-		Assert.assertEquals("You asked for online documentation", _userInterface.printMessage("help"));
-	}
-	
-	@Test
-	public void should_display_quit_message_when_typing_quit()
-	{
-		Assert.assertEquals("Bye !", _userInterface.printMessage("quit"));
-	}
-	
-	@Test
 	public void should_return_4()
 	{
-		Assert.assertEquals(String.valueOf(Double.valueOf(4)), _userInterface.userInput("20 5 /"));
+		_userInterface.parse("20 5 /");
+		Assert.assertEquals("4.0\n", _outContent.toString());
 	}
 	
 	@Test
 	public void should_return_3()
 	{
-		Assert.assertEquals(String.valueOf(Double.valueOf(3)), _userInterface.userInput("4 2 + 3 -"));
+		_userInterface.parse("4 2 + 3 -");
+		Assert.assertEquals("3.0\n", _outContent.toString());
 	}
 	
 	@Test
 	public void should_return_141()
 	{
-		Assert.assertEquals(String.valueOf(Double.valueOf(141)), _userInterface.userInput("3 5 8 * 7 + *"));
+		_userInterface.parse("3 5 8 * 7 + *");
+		Assert.assertEquals("141.0\n", _outContent.toString());
+	}
+	
+	@Test
+	public void should_return_3_for_divide()
+	{
+		_userInterface.parse("12 3 - 3 /");
+		Assert.assertEquals("3.0\n", _outContent.toString());
+	}
+	
+	@Test
+	public void should_return_negative_18()
+	{
+		_userInterface.parse("-2 3 11 + 5 - *");
+		Assert.assertEquals("-18.0\n", _outContent.toString());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void should_raise_expection_for_syntax_error()
+	{
+		_userInterface.parse("aaa");
 	}
 
-	@Test
-	public void should_return_3_with_divide()
-	{
-		Assert.assertEquals(String.valueOf(Double.valueOf(3)), _userInterface.userInput("12 3 - 3 /"));
-	}
-	
-	@Test
-	public void should_return_negativ_18()
-	{
-		Assert.assertEquals(String.valueOf(Double.valueOf(-18)), _userInterface.userInput("-2 3 11 + 5 - *"));
-	}
-	
-	@Test(expected = EmptyStackException.class)
-	public void should_raise_exception_for_empty_user_input()
-	{
-		_userInterface.userInput("");
-	}
 
 }

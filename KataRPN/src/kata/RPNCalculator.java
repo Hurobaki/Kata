@@ -6,8 +6,6 @@ import java.util.Stack;
 public class RPNCalculator {
 	
 	private Stack<Double> _stack;
-	private double operand1;
-	private double operand2;
 	
 	public RPNCalculator()
 	{
@@ -43,8 +41,8 @@ public class RPNCalculator {
 	{
 		try
 		{
-			operand1 = _stack.pop();
-			operand2 = _stack.pop();
+			double operand1 = _stack.pop();
+			double operand2 = _stack.pop();
 			
 			push(operand1 + operand2);
 		}catch(EmptyStackException e)
@@ -58,8 +56,8 @@ public class RPNCalculator {
 	{
 		try
 		{
-			operand1 = _stack.pop();
-			operand2 = _stack.pop();
+			double operand1 = _stack.pop();
+			double operand2 = _stack.pop();
 			
 			push(operand2 - operand1);
 		}catch(EmptyStackException e)
@@ -73,8 +71,8 @@ public class RPNCalculator {
 	{
 		try
 		{
-			operand1 = _stack.pop();
-			operand2 = _stack.pop();
+			double operand1 = _stack.pop();
+			double operand2 = _stack.pop();
 			
 			push(operand1 * operand2);
 		}catch(EmptyStackException e)
@@ -87,8 +85,8 @@ public class RPNCalculator {
 	{
 		try
 		{
-			operand1 = _stack.pop();
-			operand2 = _stack.pop();
+			double operand1 = _stack.pop();
+			double operand2 = _stack.pop();
 			
 			if(operand1 == Double.valueOf(0))
 			{
@@ -101,5 +99,10 @@ public class RPNCalculator {
 			throw new IllegalArgumentException();
 		}
 		
+	}
+	
+	public boolean empty()
+	{
+		return _stack.isEmpty();
 	}
 }
