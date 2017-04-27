@@ -3,33 +3,52 @@ package kata;
 import java.util.Stack;
 
 public class Calculator {
-	private Stack<String> _operators;
+	private Stack<Tuple<String, Integer>> _operators;
 	private Stack<Double> _operands;
-	private String lastOperator = "";
+	private String _lastPreviousOperator;
+	private boolean _firstPush;
 	
 	public Calculator() {
-		_operators = new Stack<String>();
+		_operators = new Stack<Tuple<String, Integer>>();
 		_operands = new Stack<Double>();
+		_lastPreviousOperator = "";
+		_firstPush = true;
 	}
 	
 	public void operand(Double operand) {
+		_firstPush = false;
 		_operands.push(operand);
+		_lastPreviousOperator = "";
 	}
 	
 	public void operator(String operator) {
-		while (!_operators.isEmpty() && priority(_operators.peek()) >= priority(operator)){
-			_operands.push(evaluate());
+		int operandNumber = 0;
+		
+		if(_firstPush) {
+			operandNumber = 1;
+		}
+		else if(_lastPreviousOperator.equals("")) {
+			operandNumber = 2;
+			
+			while (!_operators.isEmpty() && priority(_operators.peek().getOperator()) >= priority(operator)){
+				_operands.push(evaluate());
+			}
+		}
+		else {
+			operandNumber = 1;
 		}
 		
-		_operators.push(operator);
+		_operators.push(new Tuple<String,Integer>(operator, operandNumber));
+		_lastPreviousOperator = operator;
+		_firstPush = false;
 	}
 	
 	public void leftParenthesis() {
-		_operators.push("(");
+		_operators.push(new Tuple<String,Integer>("(", 0));
 	}
 	
 	public void rigthParenthesis() {
-		while (!_operators.peek().equals("(")) {
+		while (!_operators.peek().getOperator().equals("(")) {
 			_operands.push(evaluate());
 		}
 		
@@ -47,33 +66,78 @@ public class Calculator {
 	public void clear() {
 		_operators.clear();
 		_operands.clear();
+		_lastPreviousOperator = "";
+		_firstPush = true;
 	}
 	
-	private Double evaluate() throws ArithmeticException{
-		String operator = _operators.pop();
-		Double operandRight = _operands.pop();
-		Double operandLeft = _operands.pop();
+	private Double evaluate() throws ArithmeticException {
+		Tuple<String,Integer> operator = _operators.pop();
 		Double evaluationResult = 0.0;
 		
-		switch (operator) {
-			case "+":
-				evaluationResult = operandLeft + operandRight;
-				break;
+		switch (operator.getOperator()) {
+			case "+": {
+				if(operator.getOperandNumber() == 1){
+					Double operand = _operands.pop();
+					evaluationResult = +operand;
+				}
+				else{
+					Double operandRight = _operands.pop();
+					Double operandLeft = _operands.pop();
+					evaluationResult = operandLeft + operandRight;
+				}
+			}break;
 				
-			case "-":
-				evaluationResult = operandLeft - operandRight;
-				break;
+			case "-": {
+				if(operator.getOperandNumber() == 1){
+					Double operand = _operands.pop();
+					evaluationResult = -operand;
+				}
+				else{
+					Double operandRight = _operands.pop();
+					Double operandLeft = _operands.pop();
+					evaluationResult = operandLeft - operandRight;
+				}
+			}break;
 				
-			case "*":
+			case "*": {
+				Double operandRight = _operands.pop();
+				Double operandLeft = _operands.pop();
 				evaluationResult = operandLeft * operandRight;
-				break;
+			}break;
 				
-			case "/":
+			case "/": {
+				Double operandRight = _operands.pop();
+				Double operandLeft = _operands.pop();
 				evaluationResult = operandLeft / operandRight;
-				break;
+			}break;
+			
+			case "^": {
+				Double operandRight = _operands.pop();
+				Double operandLeft = _operands.pop();
+				evaluationResult = Math.pow(operandLeft, operandRight);
+			}break;
+			
+			case "sin": {
+				Double operand = _operands.pop();
+				evaluationResult = Math.sin(operand);
+			}break;
+			
+			case "cos": {
+				Double operand = _operands.pop();
+				evaluationResult = Math.cos(operand);
+			}break;
+			
+			case "olivier": {
+				_operands.pop();
+				evaluationResult = 42.0;
+			}break;
 		}
 		
-		if(Double.isInfinite(evaluationResult)){
+		if (Double.isInfinite(evaluationResult)) {
+			throw new ArithmeticException();
+		}
+		
+		if (Double.isNaN(evaluationResult)) {
 			throw new ArithmeticException();
 		}
 		
@@ -87,8 +151,11 @@ public class Calculator {
 				return 0;
 				
 			case "^":
+			case "sin":
+			case "cos":
+			case "olivier":
 				return 4;
-				
+			
 			case "*":
 			case "/":
 				return 3;

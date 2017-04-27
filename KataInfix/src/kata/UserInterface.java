@@ -16,6 +16,7 @@ public class UserInterface {
     private String _previousToken;
     private int _charIterator;
     private int _evalutionsCounter;
+    private int _userRequestLength;
 	
 	public UserInterface(InputStream inputStream, PrintStream printStream) {
 		_calculator = new Calculator();
@@ -31,18 +32,17 @@ public class UserInterface {
          
          do{
         	 _evalutionsCounter = 0;
-             _printStream.println("Calculator >");
+             _printStream.print("Calculator > ");
              String userRequest = _scanner.nextLine();
             
              try{
                  parse(userRequest);
              }
-             catch(IllegalArgumentException | EmptyStackException e){
+             catch(IllegalArgumentException | EmptyStackException e1){
                  _printStream.println("*** Syntax error ***");
              }
-             catch(ArithmeticException e2)
-             {
-            	 _printStream.println("*** Arithmetic Error ***");
+             catch(ArithmeticException e2) {
+            	 _printStream.println("*** Arithmetic error ***");
              }
             
          }
@@ -51,12 +51,12 @@ public class UserInterface {
 	
 	public void parse(String userRequest){
 		userRequest = "(" + userRequest + ")";
-		int userRequestLength = userRequest.length();
+		_userRequestLength = userRequest.length();
 
-		for (_charIterator = 0; _charIterator < userRequestLength; _charIterator++) {
+		for (_charIterator = 0; _charIterator < _userRequestLength; _charIterator++) {
 		    char currentChar = userRequest.charAt(_charIterator);
 		    
-		    if (currentChar != ' ') {
+		    if (currentChar != ' ' && currentChar != '\t') {
 		    	if (isNumber(userRequest, currentChar)) {
 		    		evaluate();
 		    	}
@@ -65,10 +65,8 @@ public class UserInterface {
 		    		evaluate();
 		    	}
 		    	else {
-		    		if(_evalutionsCounter == 1) {
-		    			_token = getOperand(userRequest);
-			    		evaluate();
-		    		}
+		    		_token = getOperand(userRequest);
+			    	evaluate();
 		    	}
 		    }
 		}
@@ -77,8 +75,6 @@ public class UserInterface {
             _printStream.println(String.valueOf(_calculator.peek()));                    
         }
 	}
-	
-	
 	
 	private boolean isNumber(String userRequest, char currentChar) {
 		int charIteratorUnary = _charIterator;
@@ -91,10 +87,9 @@ public class UserInterface {
 			hasUnaryOperator = true;
 		}
 		
-		
 		currentChar = userRequest.charAt(charIteratorUnary);
 			
-		while(currentChar != ' ' && !isOperator(String.valueOf(currentChar)) && charIteratorUnary < userRequest.length()) {
+		while(currentChar != ' ' && currentChar != '\t' && !isOperator(String.valueOf(currentChar)) && charIteratorUnary < userRequest.length()) {
 			tokenUnary += currentChar;
 			charIteratorUnary++;
 			currentChar = userRequest.charAt(charIteratorUnary);
@@ -117,7 +112,7 @@ public class UserInterface {
 	}
 	
 	private boolean isOperator(String token) {
-		if(token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/") || token.equals("(") || token.equals(")")) {
+		if(token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/") || token.equals("^") || token.equals("(") || token.equals(")")) {
 			return true;
 		}
 		
@@ -128,7 +123,7 @@ public class UserInterface {
 		char currentChar = userRequest.charAt(_charIterator);
 		String tokenOperand = "";
 		
-		while(currentChar != ' ' && !isOperator(String.valueOf(currentChar)) && _charIterator < userRequest.length()) {
+		while(currentChar != ' ' && currentChar != '\t' && !isOperator(String.valueOf(currentChar)) && _charIterator < userRequest.length()) {
 			tokenOperand += currentChar;
 			_charIterator++;
 			currentChar = userRequest.charAt(_charIterator);
@@ -145,6 +140,7 @@ public class UserInterface {
             case "-":
             case "/":
             case "*":
+            case "^":
     			_calculator.operator(String.valueOf(_token));
                 break;
                 
@@ -157,11 +153,23 @@ public class UserInterface {
     			break;
                 
             case "clear":
-            	_calculator.clear();
+			clear();
                 break;
                 
             case "help":
                 help();
+                break;
+                
+            case "sin":
+            	_calculator.operator("sin");
+                break;
+                
+            case "cos":
+            	_calculator.operator("cos");
+                break;
+                
+            case "olivier":
+            	_calculator.operator("olivier");
                 break;
                 
             case "quit":
@@ -178,9 +186,17 @@ public class UserInterface {
         _evalutionsCounter++;
     }
 
+	private void clear() {
+		_calculator.clear();
+		_calculator.leftParenthesis();
+		_charIterator++;
+	}
+
     private void quit() {
         _printStream.println("Bye !");
         _running = false;
+        _charIterator = _userRequestLength - 1;
+        clear();
         _scanner.close();
     }
 

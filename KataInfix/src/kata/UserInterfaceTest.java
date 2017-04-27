@@ -75,6 +75,18 @@ public class UserInterfaceTest {
 		Assert.assertEquals("Help !\n4.0\n", _outContent.toString());
 	}
 	
+	@Test
+	public void should_user_interface_input_2_add_neg2_return_help_0() {
+		_userInterface.parse("2+-2");
+		Assert.assertEquals("0.0\n", _outContent.toString());
+	}
+	
+	@Test
+	public void should_user_interface_input_2_add_2_return_help_0() {
+		_userInterface.parse("2+2");
+		Assert.assertEquals("4.0\n", _outContent.toString());
+	}
+	
 	@Test(expected=EmptyStackException.class)
 	public void should_user_interface_throw_illegal_argument_2_exception() {
 		_userInterface.parse("2 + 2 + 2 +");

@@ -125,5 +125,4 @@ public class CalculatorTest {
 		
 		Assert.assertEquals((Double)(-18.0), _calculator.pop());
 	}
-	
 }
