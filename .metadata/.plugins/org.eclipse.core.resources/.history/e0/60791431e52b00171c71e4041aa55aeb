@@ -1,0 +1,162 @@
+package kata;
+
+public class Lexer {
+	
+	public static final int TK_START = 0;
+	public static final int TK_CLEAR = 1;
+	public static final int TK_HELP = 2;
+	public static final int TK_QUIT = 3;
+	public static final int TK_LEFT_PARENTHESIS = 4;
+	public static final int TK_RIGHT_PARENTHESIS = 5;
+	public static final int TK_PLUS = 6;
+	public static final int TK_MINUS = 7;
+	public static final int TK_MULTIPLY = 8;
+	public static final int TK_DIVIDE = 9;
+	public static final int TK_NUMBER = 10;
+	public static final int TK_END = 11;
+	
+	private String _statement;
+	private int _charIterator;
+	private String _value ;
+	private int _token;
+	
+	
+	public Lexer(String statement) {
+		// TODO Auto-generated constructor stub
+		_statement = statement;
+		_charIterator = 0;
+		_value = "";
+		_token = TK_START;
+	}
+	
+	public void nextToken()
+	{
+		
+		int lengthStatement = _statement.length();
+
+		for (; _charIterator < lengthStatement; _charIterator++) {
+			
+		    char currentChar = _statement.charAt(_charIterator);
+		    
+		    if (currentChar != ' ' && currentChar != '\t') {
+		    	if (isNumber(_statement, currentChar)) {
+		    		
+		    	}
+		    	else if (isOperator(currentChar) {
+		    		
+		    	}
+		    	else {
+
+		    	}
+		    }
+		}
+		
+		/*if(_calculator.empty() == false) {
+            _printStream.println(String.valueOf(_calculator.peek()));                    
+        }*/
+	}
+	
+	private boolean isOperator(char currentChar) {
+        String tokenOperator = "";
+        int cursorOperator = _cursor;
+        int statementLength = _statement.length();
+       
+        switch(currentChar) {
+            case '+':
+                _token = TK_PLUS;
+                _value = String.valueOf(currentChar);
+                return true;
+               
+            case '-':
+                _token = Token.TK_MINUS;
+                _value = String.valueOf(currentChar);
+                return true;
+               
+            case '*':
+                _token = Token.TK_MULTIPLY;
+                _value = String.valueOf(currentChar);
+                return true;
+               
+            case '/':
+                _token = Token.TK_DIVIDE;
+                _value = String.valueOf(currentChar);
+                return true;
+        }
+       
+        while (String.valueOf(currentChar).matches ("[a-zA-Z]+\\.?") && cursorOperator < statementLength) {
+            currentChar = _statement.charAt(cursorOperator);
+            tokenOperator += currentChar;
+            cursorOperator++;
+        }
+       
+        switch (tokenOperator) {
+            case "sin":
+                _cursor = cursorOperator - 1;
+                _token = Token.TK_SIN;
+                _value = tokenOperator;
+                return true;
+               
+            case "cos":
+                _cursor = cursorOperator - 1;
+                _token = Token.TK_COS;
+                _value = tokenOperator;
+                return true;
+        }
+       
+        return false;
+    }
+	
+	private boolean isNumber(String statement, char currentChar)
+	{
+		int charIteratorUnary = _charIterator;
+		String tokenUnary = "";
+		boolean hasUnaryOperator = false;
+		
+		if (currentChar == '+' || currentChar == '-') {
+			tokenUnary += String.valueOf(currentChar);
+			charIteratorUnary++;
+			hasUnaryOperator = true;
+		}
+		
+		currentChar = statement.charAt(charIteratorUnary);
+			
+		while(currentChar != ' ' && currentChar != '\t' && !isOperator(currentChar) && charIteratorUnary < statement.length()) {
+			tokenUnary += currentChar;
+			charIteratorUnary++;
+			currentChar = statement.charAt(charIteratorUnary);
+		}
+		
+		if (hasUnaryOperator && !isOperator(_previousToken)) {
+			return false;
+		}
+		
+		try {
+			Double.parseDouble(tokenUnary);
+			
+			_charIterator = charIteratorUnary - 1;
+			_token = tokenUnary;
+			return true;
+		}
+		catch(NumberFormatException e) {}
+	
+		return false;
+	}
+	
+	public boolean accept(int token) {
+		if(token == _token)
+		{
+			nextToken();
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean expect(int token)	{
+		if(accept(token) == false)
+		{
+			throw new IllegalArgumentException();
+		}
+		return true;
+	}
+
+}

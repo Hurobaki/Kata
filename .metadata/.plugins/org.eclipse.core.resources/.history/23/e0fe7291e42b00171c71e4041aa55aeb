@@ -1,0 +1,87 @@
+package kata;
+
+public class Lexer {
+	
+	public static final int TK_START = 0;
+	public static final int TK_CLEAR = 1;
+	public static final int TK_HELP = 2;
+	public static final int TK_QUIT = 3;
+	public static final int TK_LEFT_PARENTHESIS = 4;
+	public static final int TK_RIGHT_PARENTHESIS = 5;
+	public static final int TK_PLUS = 6;
+	public static final int TK_MINUS = 7;
+	public static final int TK_MULTIPLY = 8;
+	public static final int TK_DIVIDE = 9;
+	public static final int TK_NUMBER = 10;
+	public static final int TK_END = 11;
+	
+	private String _statement;
+	private int _charIterator;
+	private String _value ;
+	private int _token;
+	
+	
+	public Lexer(String statement) {
+		// TODO Auto-generated constructor stub
+		_statement = statement;
+		_charIterator = 0;
+		_value = "";
+		_token = TK_START;
+	}
+	
+	public void nextToken()
+	{
+		
+		int lengthStatement = _statement.length();
+
+		for (; _charIterator < lengthStatement; _charIterator++) {
+			
+		    char currentChar = _statement.charAt(_charIterator);
+		    
+		    if (currentChar != ' ' && currentChar != '\t') {
+		    	if (isNumber(_statement, currentChar)) {
+		    		
+		    	}
+		    	else if (isOperator(String.valueOf(currentChar))) {
+		    		
+		    	}
+		    	else {
+
+		    	}
+		    }
+		}
+		
+		/*if(_calculator.empty() == false) {
+            _printStream.println(String.valueOf(_calculator.peek()));                    
+        }*/
+	}
+	
+	private boolean isOperator(char token)
+	{
+		
+		return false;
+	}
+	
+	private boolean isNumber(String statement, char currentChar)
+	{
+		return false;
+	}
+	
+	public boolean accept(int token) {
+		if(token == _token)
+		{
+			nextToken();
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean expect(int token)	{
+		if(accept(token) == false)
+		{
+			throw new IllegalArgumentException();
+		}
+		return true;
+	}
+
+}

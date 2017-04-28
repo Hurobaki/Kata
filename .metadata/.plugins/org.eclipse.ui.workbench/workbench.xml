@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="20" version="2.0">
+<workbenchAdvisor/>
+<window height="768" maximized="true" width="1024" x="0" y="0">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="134" y="30"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="144" y="30"/>
+<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="82" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="116" y="30"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="214" y="30"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1493303837603" focus="true" label="Workspace - Resource">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Lexer.java" partName="Lexer.java" path="/home/therveux/Documents/Stage/KataCalculatorTree/src/kata/Lexer.java" title="Lexer.java" tooltip="KataCalculatorTree/src/kata/Lexer.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/KataCalculatorTree/src/kata/Lexer.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="568" selectionTopPixel="1631"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LexerTest.java" partName="LexerTest.java" path="/home/therveux/Documents/Stage/KataCalculatorTree/src/test/LexerTest.java" title="LexerTest.java" tooltip="KataCalculatorTree/src/test/LexerTest.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/KataCalculatorTree/src/test/LexerTest.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="615" selectionTopPixel="0"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.junit.ResultView" partName="JUnit">
+<viewState failuresOnly="false" layout="1" orientation="2" ratio="500" scroll="false" time="true"/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
+<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="250" org.eclipse.ui.ide.locationField="75" org.eclipse.ui.ide.markerType="75" org.eclipse.ui.ide.pathField="100" org.eclipse.ui.ide.priorityField="25" org.eclipse.ui.ide.resourceField="75"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+</views>
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.ui.resourcePerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.jdt.junit.ResultView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.team.ccvs.ui.RepositoriesView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@2cea921a" ratio="0.7517025" ratioLeft="1435" ratioRight="474" relationship="2" relative="topLeft">
+<folder activePageID="org.eclipse.jdt.junit.ResultView" appearance="2" expanded="2">
+<page content="org.eclipse.jdt.junit.ResultView" label="JUnit"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="2"/>
+<part id="1"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@5215cd9a" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.23459384" ratioLeft="335" ratioRight="1093" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottomRight" ratio="0.6598425" ratioLeft="419" ratioRight="216" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="bottomLeft" ratio="0.4992126" ratioLeft="317" ratioRight="318" relationship="4" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/kata/Lexer.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/kata/Parser.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/test/LexerTest.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/test/ParserTest.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/test/LexerTest.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/kata/Parser.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/KataCalculatorTree/src/test/ParserTest.java"/>
+</editors>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="609" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="798" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="609" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="798" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="609" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="639" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1743" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="708" y="6"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1743" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="727" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1734" y="41"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="850" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="727" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1389" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="ParserTest.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="683" y="4"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="701" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1623" y="0"/>
+</item>
+<item historyLabel="Parser.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="695" y="6"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="403" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="ParserTest.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ParserTest.java" index="3">
+<position info="not_deleted" x="299" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1058" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="403" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position/>
+</item>
+<item historyLabel="LexerTest.java" index="2">
+<position info="not_deleted" x="344" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1064" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1434" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1286" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="4">
+<position info="not_deleted" x="731" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="4">
+<position info="not_deleted" x="615" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1286" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1460" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1565" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="1563" y="0"/>
+</item>
+<item historyLabel="Lexer.java" index="0">
+<position info="not_deleted" x="568" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="4">
+<position info="not_deleted" x="615" y="0"/>
+</item>
+<item historyLabel="Parser.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="LexerTest.java" index="4">
+<position info="not_deleted" x="615" y="0"/>
+</item>
+<item historyLabel="ParserTest.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="LexerTest.java" index="4">
+<position info="not_deleted" x="615" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ParserTest.java" tooltip="KataCalculatorTree/src/test/ParserTest.java">
+<persistable path="/KataCalculatorTree/src/test/ParserTest.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LexerTest.java" tooltip="KataCalculatorTree/src/test/LexerTest.java">
+<persistable path="/KataCalculatorTree/src/test/LexerTest.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Parser.java" tooltip="KataCalculatorTree/src/kata/Parser.java">
+<persistable path="/KataCalculatorTree/src/kata/Parser.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Lexer.java" tooltip="KataCalculatorTree/src/kata/Lexer.java">
+<persistable path="/KataCalculatorTree/src/kata/Lexer.java"/>
+</file>
+</mruList>
+</workbench>
