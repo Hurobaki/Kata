@@ -1,22 +1,24 @@
 package kata.analyser;
 
-import kata.expression.ConstantExpression;
-import kata.expression.CosExpression;
-import kata.expression.Expression;
-import kata.expression.AddExpression;
-import kata.expression.SinExpression;
-import kata.expression.SubExpression;
-import kata.expression.MulExpression;
-import kata.expression.DivExpression;
-import kata.expression.ParenthesisExpression;
-import kata.expression.PosExpression;
-import kata.expression.NegExpression;
-
 import kata.analyser.Lexer.Token;
 import kata.command.ClearCommand;
 import kata.command.Command;
 import kata.command.HelpCommand;
 import kata.command.QuitCommand;
+import kata.expression.AddExpression;
+import kata.expression.ConstantExpression;
+import kata.expression.CosExpression;
+import kata.expression.DivExpression;
+import kata.expression.Expression;
+import kata.expression.MulExpression;
+import kata.expression.NegExpression;
+import kata.expression.ParenthesisExpression;
+import kata.expression.PosExpression;
+import kata.expression.PowExpression;
+import kata.expression.SinExpression;
+import kata.expression.SubExpression;
+import kata.visitor.ASTEvaluator;
+import kata.visitor.RPNGenerator;
 
 public class Parser {
 	private Lexer _lexer;
@@ -55,11 +57,21 @@ public class Parser {
 		Expression expression = expression();
 
 		if (expression != null) {
-			if (_lexer.expect(Token.TK_END)) {
-				System.out.println(expression.evaluate());
-			} else {
-				throw new IllegalArgumentException();
-			}
+			// if (_lexer.expect(Token.TK_END)) {
+			/*
+			 * System.out.println(expression.evaluate());
+			 * System.out.println(expression.toRPN());
+			 */
+			/*
+			 * } else { throw new IllegalArgumentException(); }
+			 */
+
+			RPNGenerator visitor = new RPNGenerator();
+			expression.accept(visitor);
+			System.out.println(visitor.getString());
+
+			ASTEvaluator evaluator = new ASTEvaluator();
+			expression.accept(evaluator);
 		}
 	}
 
@@ -85,8 +97,8 @@ public class Parser {
 	}
 
 	public Expression expression() {
-		
-		Expression expression = addExpression();
+
+		Expression expression = addsubExpression();
 
 		if (expression != null) {
 			return expression;
@@ -94,52 +106,96 @@ public class Parser {
 		return null;
 	}
 
-	public Expression addExpression() {
+	public Expression addsubExpression() {
+		Expression expression = muldivExpression();
 
-		Expression mulExpression = mulExpression();
-
-		if (mulExpression != null) {
-
-			if (_lexer.accept(Token.TK_PLUS)) {
-				Expression addExpression = addExpression();
-
-				if (addExpression != null) {
-					return new AddExpression(addExpression, mulExpression);
-				}
-			} else if (_lexer.accept(Token.TK_MINUS)) {
-				Expression addExpression = addExpression();
-
-				if (addExpression != null) {
-					return new SubExpression(addExpression, mulExpression);
-				}
-			}
-
-			return mulExpression;
+		if (expression != null) {
+			return addsubExpression(expression);
 		}
+
 		return null;
 	}
 
-	public Expression mulExpression() {
-		Expression unaryExpression = unaryExpression();
+	public Expression addsubExpression(Expression lhs) {
 
-		if (unaryExpression != null) {
+		if (_lexer.accept(Token.TK_PLUS)) {
+			Expression rhs = muldivExpression();
 
-			if (_lexer.accept(Token.TK_MULTIPLY)) {
-				Expression mulExpression = mulExpression();
-
-				if (mulExpression != null) {
-					return new MulExpression(unaryExpression, mulExpression);
-				}
-			} else if (_lexer.accept(Token.TK_DIVIDE)) {
-				Expression mulExpression = mulExpression();
-
-				if (mulExpression != null) {
-					return new DivExpression(unaryExpression, mulExpression);
-				}
+			if (rhs == null) {
+				throw new IllegalArgumentException();
 			}
-			return unaryExpression;
+			return addsubExpression(new AddExpression(lhs, rhs));
+
 		}
+
+		if (_lexer.accept(Token.TK_MINUS)) {
+			Expression rhs = muldivExpression();
+
+			if (rhs == null) {
+				throw new IllegalArgumentException();
+			}
+			return addsubExpression(new SubExpression(lhs, rhs));
+		}
+
+		return lhs;
+
+	}
+
+	public Expression muldivExpression() {
+		Expression expression = binaryExpression();
+
+		if (expression != null) {
+			return muldivExpression(expression);
+		}
+
 		return null;
+	}
+
+	public Expression muldivExpression(Expression lhs) {
+
+		if (_lexer.accept(Token.TK_MULTIPLY)) {
+			Expression rhs = binaryExpression();
+
+			if (rhs == null) {
+				throw new IllegalArgumentException();
+			}
+			return muldivExpression(new MulExpression(lhs, rhs));
+		}
+
+		if (_lexer.accept(Token.TK_DIVIDE)) {
+			Expression rhs = binaryExpression();
+
+			if (rhs == null) {
+				throw new IllegalArgumentException();
+			}
+			return muldivExpression(new DivExpression(lhs, rhs));
+		}
+
+		return lhs;
+	}
+
+	public Expression binaryExpression() {
+		Expression expression = unaryExpression();
+
+		if (expression != null) {
+			return binaryExpression(expression);
+		}
+
+		return null;
+	}
+
+	public Expression binaryExpression(Expression lhs) {
+
+		if (_lexer.accept(Token.TK_POW)) {
+			Expression rhs = unaryExpression();
+
+			if (rhs == null) {
+				throw new IllegalArgumentException();
+			}
+			return binaryExpression(new PowExpression(lhs, rhs));
+		}
+
+		return lhs;
 	}
 
 	public Expression unaryExpression() {
@@ -172,6 +228,7 @@ public class Parser {
 				return new SinExpression(expression);
 			}
 		}
+
 		return null;
 	}
 
@@ -191,6 +248,7 @@ public class Parser {
 				return expression;
 			}
 		}
+
 		return null;
 	}
 }

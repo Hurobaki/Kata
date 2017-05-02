@@ -2,22 +2,25 @@ package kata.expression;
 
 import kata.interfaces.ASTVisitor;
 
-public class MulExpression extends BinaryExpression {
+public class PowExpression extends BinaryExpression {
 
-	public MulExpression(Expression leftExpression, Expression rightExpression) {
+	public PowExpression(Expression leftExpression, Expression rightExpression) {
+		// TODO Auto-generated constructor stub
 		super(leftExpression, rightExpression);
 	}
 
 	@Override
 	public Double evaluate() {
-		return _leftExpression.evaluate() * _rightExpression.evaluate();
+		// TODO Auto-generated method stub
+		return Math.pow(getLeftExpression().evaluate(), getRightExpression()
+				.evaluate());
 	}
 
 	@Override
 	public String toRPN() {
 		String lhs = _leftExpression.toRPN();
 		String rhs = _rightExpression.toRPN();
-		return lhs + " " + rhs + " " + "*";
+		return lhs + " " + rhs + " " + "^";
 	}
 
 	@Override
@@ -27,4 +30,5 @@ public class MulExpression extends BinaryExpression {
 		_rightExpression.accept(v);
 		v.visit(this);
 	}
+
 }

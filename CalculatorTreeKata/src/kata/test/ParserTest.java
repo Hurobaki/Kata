@@ -5,11 +5,8 @@ import java.io.PrintStream;
 
 import kata.analyser.Parser;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -97,6 +94,21 @@ public class ParserTest {
 	public void test_11_should_raison_illegal_argument_exception() {
 		_parser = new Parser("1+3 help");
 		_parser.parse();
+	}
+
+	@Test
+	public void test_12_should_equals_to_sin_2() {
+		Double temp = Math.sin(2);
+		_parser = new Parser("sin(2)");
+		_parser.parse();
+		Assert.assertEquals(String.valueOf(temp) + "\n", _outContent.toString());
+	}
+
+	@Test
+	public void test_13_should_return_25() {
+		_parser = new Parser("5^2");
+		_parser.parse();
+		Assert.assertEquals("25.0\n", _outContent.toString());
 	}
 
 }

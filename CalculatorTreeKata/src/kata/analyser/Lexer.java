@@ -10,7 +10,7 @@ public class Lexer {
 	private String _oldValue;
 
 	public static enum Token {
-		TK_START, TK_END, TK_NOP, TK_HELP, TK_QUIT, TK_CLEAR, TK_NUMBER, TK_LEFT_PARENTHESIS, TK_RIGHT_PARENTHESIS, TK_PLUS, TK_MINUS, TK_MULTIPLY, TK_DIVIDE, TK_EXP, TK_SIN, TK_COS
+		TK_START, TK_END, TK_NOP, TK_HELP, TK_QUIT, TK_CLEAR, TK_NUMBER, TK_LEFT_PARENTHESIS, TK_RIGHT_PARENTHESIS, TK_PLUS, TK_MINUS, TK_MULTIPLY, TK_DIVIDE, TK_POW, TK_SIN, TK_COS
 	};
 
 	public Lexer(String statement) {
@@ -205,7 +205,7 @@ public class Lexer {
 			return true;
 
 		case '^':
-			_token = Token.TK_EXP;
+			_token = Token.TK_POW;
 			_value = String.valueOf(currentChar);
 			_cursor++;
 			return true;
