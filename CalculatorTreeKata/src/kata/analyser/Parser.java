@@ -68,10 +68,11 @@ public class Parser {
 
 			RPNGenerator visitor = new RPNGenerator();
 			expression.accept(visitor);
-			System.out.println(visitor.getString());
+			System.out.println("RPN >" + " " + visitor.getString());
 
 			ASTEvaluator evaluator = new ASTEvaluator();
 			expression.accept(evaluator);
+			System.out.println("Result >" + " " + evaluator.getResult());
 		}
 	}
 
