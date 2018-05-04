@@ -1,0 +1,18 @@
+import * as code from '../kata_fizzbuzz';
+
+var assert = require('assert');
+describe('FizzBuzz', function() {
+    it('Si le nombre en entrée est divisible par 3, on devrait retourner Fizz', function(){
+        assert.equal(code.fizzBuzz(3), 'Fizz');
+    }),
+    it('Si le nombre en entrée est divisible par 5, on devrait retourner Buzz', function(){
+        assert.equal(code.fizzBuzz(5), 'Buzz');
+    }),
+    it('Si le nombre en entrée est divisible par 3 et 5, on devrait retourner FizzBuzz', function(){
+        assert.equal(code.fizzBuzz(15), 'FizzBuzz');
+
+    }),
+    it("Si le nombre en entrée n'est ni divisible par 3 ni par 5, on devrait retourner le nombre", function(){
+        assert.equal(code.fizzBuzz(14), '14');
+    })
+});
