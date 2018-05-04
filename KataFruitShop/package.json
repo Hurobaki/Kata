@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node --presets es2015 basicLoop.js",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha --require babel-core/register --exit",
+    "test:coverage": "nyc mocha --require babel-core/register --exit"
   },
   "author": "",
   "license": "ISC",
@@ -15,9 +16,11 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.2",
     "js-mock": "^1.0.1",
-    "mocha": "^5.1.1"
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1"
   }
 }
